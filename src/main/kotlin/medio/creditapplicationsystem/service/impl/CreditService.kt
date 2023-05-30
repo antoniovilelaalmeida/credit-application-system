@@ -2,6 +2,7 @@ package medio.creditapplicationsystem.service.impl
 
 import medio.creditapplicationsystem.CustomerService
 import medio.creditapplicationsystem.entity.Credit
+import medio.creditapplicationsystem.exception.BusinessException
 import medio.creditapplicationsystem.repository.CreditRepository
 import medio.creditapplicationsystem.service.ICreditService
 import org.springframework.stereotype.Service
@@ -25,7 +26,7 @@ class CreditService(
 
     override fun findByCreditCode(customerId: Long, creditCode: UUID): Credit {
         val credit: Credit = (this.creditRepository.findByCreditCode(creditCode)
-            ?: throw RuntimeException("Creditcode $creditCode not found"))
-        return if (credit.customer?.id == customerId) credit else throw RuntimeException("Contact admin")
+            ?: throw BusinessException("Creditcode $creditCode not found"))
+        return if (credit.customer?.id == customerId) credit else throw IllegalArgumentException("Contact admin")
     }
 }

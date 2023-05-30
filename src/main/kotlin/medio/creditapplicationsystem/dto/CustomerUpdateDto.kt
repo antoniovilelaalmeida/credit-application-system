@@ -1,14 +1,16 @@
 package medio.creditapplicationsystem.dto
 
+import jakarta.validation.constraints.NotEmpty
+import jakarta.validation.constraints.NotNull
 import medio.creditapplicationsystem.entity.Customer
 import java.math.BigDecimal
 
 data class CustomerUpdateDto(
-  val firstName: String,
-  val lastName: String,
-  val income: BigDecimal,
-  val zipCode: String,
-  val street: String
+  @field:NotEmpty(message = "Inavalid Input") val firstName: String,
+  @field:NotEmpty(message = "Inavalid Input")val lastName: String,
+  @field:NotNull(message = "Invalid Input")val income: BigDecimal,
+  @field:NotEmpty(message = "Inavalid Input")val zipCode: String,
+  @field:NotEmpty(message = "Inavalid Input")val street: String
 ) {
   fun toEntity(customer: Customer) : Customer{
     customer.firstName = this.firstName
