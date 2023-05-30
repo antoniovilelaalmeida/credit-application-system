@@ -20,9 +20,7 @@ class CustomerService(
         .orElseThrow {
         throw BusinessException("Id $id not found")
         }
-    }
 
     override fun delete(id: Long) = this.customerRepository.deleteById(id)
-
 
 }
